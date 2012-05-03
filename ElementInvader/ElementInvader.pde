@@ -10,7 +10,7 @@ private static final String VERSION = "ElementInvader v0.1";
 
 //buffer
 private int[] colorArray;  
-private int fpsSpeed;
+private int fpsSpeed=1;
 
 //application logic
 private int frame;
@@ -24,16 +24,11 @@ void setup() {
   frameRate(20);
   smooth();
   
+  colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
   initGui();
 //  initSerial();
-  
-  colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
-  
-  elements = new ArrayList<Element>();
-  elements.add(new Element("Noble gases", new int[] {20,40,60,80,100}));
-  elements.add(new Element("Halogens", new int[] {42,43,44,45,46,47,48}));
-  elements.add(new Element("Metalloids", new int[] {1,2,55,44}));
-  elements.add(new Element("Actinides", new int[] {23,34,45,56,67,78}));
+    
+  initElements();  
 }
 
 

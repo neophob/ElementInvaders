@@ -29,7 +29,7 @@ void fillGridWithColor() {
     break;
   }
   
-  if (int(random(15))==5) {
+  if (frame%fpsSpeed==0) {
     selectedElement = int(random(elements.size())); 
     println("selectedElement: "+selectedElement);
   }

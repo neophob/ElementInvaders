@@ -49,7 +49,11 @@ void updateTextfield(String text) {
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(fpsSlider)) {
-    fpsSpeed = int(theEvent.getValue());
+    fpsSpeed = int(100f*theEvent.getValue());
+    if (fpsSpeed<1) {
+      fpsSpeed = 1;
+    }
+    println("fpsSpeed: "+fpsSpeed);
     return;
   }
   
