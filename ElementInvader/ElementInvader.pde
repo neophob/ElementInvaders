@@ -24,18 +24,18 @@ void setup() {
   smooth();
   
   initGui();
-  initSerial();
+//  initSerial();
   
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
-  fillWithDummyColor();  
 }
 
 
 void draw() {
   background(0);
   drawGradientBackground();
+  fillGridWithColor();  
   drawElements(150,25);
-
+  
   sendSerial();
   frame++;
 }

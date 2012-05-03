@@ -53,8 +53,9 @@ void controlEvent(ControlEvent theEvent) {
     return;
   }
   
-  if (theEvent.isFrom(fpsSlider)) {
+  if (theEvent.isFrom(modeButton)) {
     selectedMode = int(theEvent.getValue());
+    println("selectedMode: "+selectedMode);
     return;
   }
   
