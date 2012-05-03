@@ -14,8 +14,9 @@ private int fpsSpeed;
 
 //application logic
 private int frame;
-int selectedMode=MODE_DEFAULT;
-
+private int selectedMode=MODE_DEFAULT;
+private List<Element> elements;
+private int selectedElement=0;
 
 void setup() {
   size(800, 500);
@@ -27,6 +28,12 @@ void setup() {
 //  initSerial();
   
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
+  
+  elements = new ArrayList<Element>();
+  elements.add(new Element("Noble gases", new int[] {20,40,60,80,100}));
+  elements.add(new Element("Halogens", new int[] {42,43,44,45,46,47,48}));
+  elements.add(new Element("Metalloids", new int[] {1,2,55,44}));
+  elements.add(new Element("Actinides", new int[] {23,34,45,56,67,78}));
 }
 
 
