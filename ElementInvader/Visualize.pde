@@ -25,6 +25,7 @@ public void drawElements(int xx, int yy) {
   int srcOfs=0;
   int yofs=yy;
 
+  stroke(40, 40, 40);
   for (int y=0; y<NR_OF_PIXELS_Y; y++) {
     xofs=xx;
     for (int x=0; x<NR_OF_PIXELS_X; x++) {
