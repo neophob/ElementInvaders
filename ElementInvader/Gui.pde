@@ -1,3 +1,9 @@
+//gui
+private ControlP5 cp5;
+private Slider fpsSlider;
+private Textarea myTextarea;
+private RadioButton modeButton;
+
 int slideBackground = color(48, 48, 48);
 
 void initGui() {
@@ -8,9 +14,8 @@ void initGui() {
     .setPosition(300, 380)
       .setSize(200, 20)
         .setRange(0, 1)
-          .setValue(.6)
-            ;
-            
+          .setValue(.6);
+
   myTextarea = cp5.addTextarea("txt")
     .setPosition(580, 380)
       .setSize(210, 80)
@@ -19,9 +24,21 @@ void initGui() {
             .setColor(color(192))            
               .setColorBackground(slideBackground)
                 .setColorForeground(color(255, 100));
-  ;
-  
-  updateTextfield(VERSION);             
+
+  modeButton = cp5.addRadioButton("colorModeButton")
+    .setPosition(20, 380)
+      .setSize(20, 20)
+        .setColorForeground(color(120))
+          .setColorActive(color(255))
+            .setColorLabel(color(255))
+              .setItemsPerRow(6)
+                .setSpacingColumn(60)
+                  .setNoneSelectedAllowed(false)
+                    .addItem("Default", MODE_DEFAULT)
+                      .addItem("Fast", MODE_FAST)
+                        .activate(0);
+                        
+  updateTextfield(VERSION);
 }
 
 void updateTextfield(String text) {
@@ -36,4 +53,10 @@ void controlEvent(ControlEvent theEvent) {
     return;
   }
   
+  if (theEvent.isFrom(fpsSlider)) {
+    selectedMode = int(theEvent.getValue());
+    return;
+  }
+  
 }
+

@@ -1,3 +1,6 @@
+static final int MODE_DEFAULT=0;
+static final int MODE_FAST=1;
+
 void fillWithDummyColor() {
   int ofs=0;
   int r=0, g=0, b=0;
