@@ -37,7 +37,8 @@ void initGui() {
                   .setNoneSelectedAllowed(false)
                     .addItem("Default", MODE_DEFAULT)
                       .addItem("Rainbow", MODE_RAINBOW)
-                        .activate(0);
+                        .addItem("Fire", MODE_FIRE)
+                          .activate(0);
 
   //radiobuttons with color
   colorButton = cp5.addRadioButton("colorButton")
@@ -55,7 +56,7 @@ void initGui() {
     colorButton.addItem(cs.getName(), i++);
   }
   colorButton.activate(0);
-                        
+
   updateTextfield(VERSION);
 }
 
@@ -74,17 +75,16 @@ void controlEvent(ControlEvent theEvent) {
     println("fpsSpeed: "+fpsSpeed);
     return;
   }
-  
+
   if (theEvent.isFrom(modeButton)) {
     selectedMode = int(theEvent.getValue());
     println("selectedMode: "+selectedMode);
     return;
   }
-  
- if (theEvent.isFrom(colorButton)) {
+
+  if (theEvent.isFrom(colorButton)) {
     colSet = int(theEvent.getValue());
     return;
-  }  
-  
+  }
 }
 

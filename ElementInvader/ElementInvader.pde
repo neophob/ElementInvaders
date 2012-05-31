@@ -51,12 +51,14 @@ void setup() {
   colorSet.add( new ColorSet("Dribble",     new int[] { color(#3D4C53), color(#70B7BA), color(#F1433F), color(#E7E1D4), color(#FFFFFF) } ));  
   colorSet.add( new ColorSet("Castle",      new int[] { color(#4B345C), color(#946282), color(#E5A19B) } ));  
   colorSet.add( new ColorSet("Fizz",        new int[] { color(#04BFBF), color(#F7E967), color(#588F27) } ));    
-  
+  colorSet.add( new ColorSet("Fire",        new int[] { color(#000000), color(#000040), color(#ff0000), color(#ffff00), color(#ffffff), color(#ffffff) } ));    
+
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
   initGui();
 //  initSerial();
     
   initElements();  
+  initContent();
 }
 
 
