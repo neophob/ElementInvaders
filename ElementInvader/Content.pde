@@ -1,9 +1,10 @@
 static final int MODE_DEFAULT=0;
-static final int MODE_FAST=1;
+static final int MODE_RAINBOW=1;
 
 
 void fillGridWithColor() {
   int ofs=0;
+  ColorSet cs = colorSet.get(colSet);
 
   switch(selectedMode) {
 
@@ -16,22 +17,24 @@ void fillGridWithColor() {
     //fill active element
     Element e = elements.get(selectedElement); 
     for (int n: e.getSelectedElements()) {
-      colorArray[n] = color(200,200,60+random(140));
+      colorArray[n] = cs.getSmoothColor(frame);
     }
     break;
 
-  case MODE_FAST:
+  case MODE_RAINBOW:
+    int i=0;
     for (int y=0; y<NR_OF_PIXELS_Y; y++) {
       for (int x=0; x<NR_OF_PIXELS_X; x++) {
-        colorArray[ofs++] = color(random(255), random(255), random(255));
+        colorArray[i++]=cs.getSmoothColor(int((frame+x+y<<1)*fpsSpeed));
       }
     }
     break;
   }
   
-  if (frame%fpsSpeed==0) {
+  int nextElement = 10+int(50*fpsSpeed);
+  if (frame%nextElement==0) {
     selectedElement = int(random(elements.size())); 
-    println("selectedElement: "+selectedElement);
+    //println("selectedElement: "+selectedElement);
   }
 }
 
