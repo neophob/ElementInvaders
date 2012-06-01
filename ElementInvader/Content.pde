@@ -2,6 +2,7 @@ static final int MODE_SINGLE_ELEMENT=0;
 static final int MODE_RAINBOW=1;
 static final int MODE_FIRE=2;
 static final int MODE_ALL_ELEMENTS=3;
+static final int MODE_PULSE_ELEMENTS=4;
 
 static int[] darkElements = new int[] {
   0, 20, 40, 60, 80, 100, 120, 140, 160, //left boarder
@@ -25,7 +26,7 @@ void fillGridWithColor() {
   int ofs=0;
   int i=0;
   ColorSet cs = colorSet.get(colSet);
-  int speedFrame = int(2*fpsSpeed*frame);
+  int speedFrame = int(4*fpsSpeed*frame);
   switch(selectedMode) {
 
     //Elements
@@ -64,6 +65,28 @@ void fillGridWithColor() {
     //fill active element
     for (Element e2: elements) {
       int col = cs.getSmoothColor(speedFrame+n*steps);
+      n++;
+
+      for (int n2: e2.getSelectedElements()) {
+        colorArray[n2] = col;
+      }
+    }
+
+    //draw dark elements
+    for (int n2: darkElements) {
+      colorArray[n2] = 0;
+    }    
+    break;
+
+  //pulse animation
+  case MODE_PULSE_ELEMENTS:
+    steps = 255 / elements.size();
+    n=0;    
+    
+    //fill active element
+    for (Element e2: elements) {
+      int pulse = int(64*sin(n*steps));
+      int col = cs.getSmoothColor(speedFrame+pulse);
       n++;
 
       for (int n2: e2.getSelectedElements()) {

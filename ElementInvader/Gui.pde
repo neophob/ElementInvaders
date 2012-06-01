@@ -37,6 +37,7 @@ void initGui() {
                   .setNoneSelectedAllowed(false)
                     .addItem("Single Elements", MODE_SINGLE_ELEMENT)
                     .addItem("All Elements", MODE_ALL_ELEMENTS)
+                    .addItem("Pulse Elements", MODE_PULSE_ELEMENTS)                    
                       .addItem("Rainbow", MODE_RAINBOW)
                         .addItem("Fire", MODE_FIRE)                        
                           .activate(0);
