@@ -25,13 +25,13 @@ void fillGridWithColor() {
   int ofs=0;
   int i=0;
   ColorSet cs = colorSet.get(colSet);
-
+  int speedFrame = int(2*fpsSpeed*frame);
   switch(selectedMode) {
 
     //Elements
   case MODE_SINGLE_ELEMENT:
-    int activeCol = cs.getSmoothColor(frame);
-    int inactiveCol = cs.getSmoothColor(frame+128);
+    int activeCol = cs.getSmoothColor(speedFrame);
+    int inactiveCol = cs.getSmoothColor(speedFrame+128);
 
     //clear content
     for (int n1=0; n1<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n1++) {
@@ -48,17 +48,24 @@ void fillGridWithColor() {
     for (int n1: darkElements) {
       colorArray[n1] = 0;
     }
+
+    int nextElement = 10+int(50*fpsSpeed);
+    if (speedFrame%100==1) {
+      selectedElement = int(random(elements.size())); 
+      //println("selectedElement: "+selectedElement);
+    }
+
     break;
 
   case MODE_ALL_ELEMENTS:
     int steps = 255 / elements.size();
     int n=0;
-    
+
     //fill active element
     for (Element e2: elements) {
-      int col = cs.getSmoothColor(frame+n*steps);
+      int col = cs.getSmoothColor(speedFrame+n*steps);
       n++;
-      
+
       for (int n2: e2.getSelectedElements()) {
         colorArray[n2] = col;
       }
@@ -89,12 +96,6 @@ void fillGridWithColor() {
       }
     }
     break;
-  }
-
-  int nextElement = 10+int(50*fpsSpeed);
-  if (frame%nextElement==0) {
-    selectedElement = int(random(elements.size())); 
-    //println("selectedElement: "+selectedElement);
   }
 }
 
