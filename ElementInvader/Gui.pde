@@ -12,7 +12,7 @@ void initGui() {
 
   // add a vertical slider
   fpsSlider = cp5.addSlider("Speed")
-    .setPosition(300, 380)
+    .setPosition(300, 420)
       .setSize(200, 20)
         .setRange(0, 1)
           .setValue(.6);
@@ -33,11 +33,12 @@ void initGui() {
           .setColorActive(color(255))
             .setColorLabel(color(255))
               .setItemsPerRow(6)
-                .setSpacingColumn(60)
+                .setSpacingColumn(80)
                   .setNoneSelectedAllowed(false)
-                    .addItem("Elements", MODE_ELEMENTS)
+                    .addItem("Single Elements", MODE_SINGLE_ELEMENT)
+                    .addItem("All Elements", MODE_ALL_ELEMENTS)
                       .addItem("Rainbow", MODE_RAINBOW)
-                        .addItem("Fire", MODE_FIRE)
+                        .addItem("Fire", MODE_FIRE)                        
                           .activate(0);
 
   //radiobuttons with color

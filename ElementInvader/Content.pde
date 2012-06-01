@@ -1,16 +1,17 @@
-static final int MODE_ELEMENTS=0;
+static final int MODE_SINGLE_ELEMENT=0;
 static final int MODE_RAINBOW=1;
 static final int MODE_FIRE=2;
+static final int MODE_ALL_ELEMENTS=3;
 
 static int[] darkElements = new int[] {
-   0,20,40,60,80,100,120,140,160, //left boarder
-  19,39,59,79,99,119,139,159,179, //right boarder
-  1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18, //top tow
-  161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,
-  2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,                   //first row
-  22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,           //second row
-  43,44,45,46,47,48,49,50,51,52,
-  63,64,65,66,67,68,69,70,71,72
+  0, 20, 40, 60, 80, 100, 120, 140, 160, //left boarder
+  19, 39, 59, 79, 99, 119, 139, 159, 179, //right boarder
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, //top tow
+  161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 
+  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, //first row
+  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, //second row
+  43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 
+  63, 64, 65, 66, 67, 68, 69, 70, 71, 72
 };
 
 private int[] fireBuffer;
@@ -22,31 +23,51 @@ void initContent() {
 
 void fillGridWithColor() {
   int ofs=0;
-  int i=0;  
+  int i=0;
   ColorSet cs = colorSet.get(colSet);
 
   switch(selectedMode) {
 
     //Elements
-  case MODE_ELEMENTS:
+  case MODE_SINGLE_ELEMENT:
     int activeCol = cs.getSmoothColor(frame);
     int inactiveCol = cs.getSmoothColor(frame+128);
 
     //clear content
-    for (int n=0; n<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n++) {
-      colorArray[n] = inactiveCol;
+    for (int n1=0; n1<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n1++) {
+      colorArray[n1] = inactiveCol;
     }
 
     //fill active element
     Element e = elements.get(selectedElement); 
-    for (int n: e.getSelectedElements()) {
-      colorArray[n] = activeCol;
+    for (int n1: e.getSelectedElements()) {
+      colorArray[n1] = activeCol;
     }
-    
+
     //draw dark elements
-    for (int n: darkElements) {
-      colorArray[n] = 0;
+    for (int n1: darkElements) {
+      colorArray[n1] = 0;
     }
+    break;
+
+  case MODE_ALL_ELEMENTS:
+    int steps = 255 / elements.size();
+    int n=0;
+    
+    //fill active element
+    for (Element e2: elements) {
+      int col = cs.getSmoothColor(frame+n*steps);
+      n++;
+      
+      for (int n2: e2.getSelectedElements()) {
+        colorArray[n2] = col;
+      }
+    }
+
+    //draw dark elements
+    for (int n2: darkElements) {
+      colorArray[n2] = 0;
+    }    
     break;
 
     //Rainbow animation

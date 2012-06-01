@@ -14,7 +14,7 @@ private float fpsSpeed=1f;
 
 //application logic
 private int frame;
-private int selectedMode=MODE_ELEMENTS;
+private int selectedMode=MODE_SINGLE_ELEMENT;
 
 //color stuff
 private int colSet=0;
