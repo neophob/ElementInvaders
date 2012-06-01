@@ -1,6 +1,17 @@
-static final int MODE_DEFAULT=0;
+static final int MODE_ELEMENTS=0;
 static final int MODE_RAINBOW=1;
 static final int MODE_FIRE=2;
+
+static int[] darkElements = new int[] {
+   0,20,40,60,80,100,120,140,160, //left boarder
+  19,39,59,79,99,119,139,159,179, //right boarder
+  1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18, //top tow
+  161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,
+  2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,                   //first row
+  22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,           //second row
+  43,44,45,46,47,48,49,50,51,52,
+  63,64,65,66,67,68,69,70,71,72
+};
 
 private int[] fireBuffer;
 private Random r = new Random();
@@ -17,16 +28,24 @@ void fillGridWithColor() {
   switch(selectedMode) {
 
     //Elements
-  case MODE_DEFAULT:
+  case MODE_ELEMENTS:
+    int activeCol = cs.getSmoothColor(frame);
+    int inactiveCol = cs.getSmoothColor(frame+128);
+
     //clear content
     for (int n=0; n<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n++) {
-      colorArray[n] = 0;
+      colorArray[n] = inactiveCol;
     }
 
     //fill active element
     Element e = elements.get(selectedElement); 
     for (int n: e.getSelectedElements()) {
-      colorArray[n] = cs.getSmoothColor(frame);
+      colorArray[n] = activeCol;
+    }
+    
+    //draw dark elements
+    for (int n: darkElements) {
+      colorArray[n] = 0;
     }
     break;
 

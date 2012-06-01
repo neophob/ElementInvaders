@@ -35,7 +35,7 @@ void initGui() {
               .setItemsPerRow(6)
                 .setSpacingColumn(60)
                   .setNoneSelectedAllowed(false)
-                    .addItem("Default", MODE_DEFAULT)
+                    .addItem("Elements", MODE_ELEMENTS)
                       .addItem("Rainbow", MODE_RAINBOW)
                         .addItem("Fire", MODE_FIRE)
                           .activate(0);
