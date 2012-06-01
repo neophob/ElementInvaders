@@ -57,7 +57,7 @@ void initGui() {
   for (ColorSet cs: colorSet) {
     colorButton.addItem(cs.getName(), i++);
   }
-  colorButton.activate(0);
+  colorButton.activate(5);
 
   updateTextfield(VERSION);
 }
