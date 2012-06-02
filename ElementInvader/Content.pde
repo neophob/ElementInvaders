@@ -4,6 +4,7 @@ static final int MODE_FIRE=2;
 static final int MODE_ALL_ELEMENTS=3;
 static final int MODE_PULSE_ELEMENTS=4;
 
+//elements which are not part of the periodic table (example: http://modelscience.com/PeriodicTable.html)
 static int[] darkElements = new int[] {
   0, 20, 40, 60, 80, 100, 120, 140, 160, //left boarder
   19, 39, 59, 79, 99, 119, 139, 159, 179, //right boarder
@@ -32,11 +33,10 @@ void fillGridWithColor() {
     //Elements
   case MODE_SINGLE_ELEMENT:
     int activeCol = cs.getSmoothColor(speedFrame);
-    int inactiveCol = cs.getSmoothColor(speedFrame+128);
 
     //clear content
     for (int n1=0; n1<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n1++) {
-      colorArray[n1] = inactiveCol;
+      colorArray[n1] = 0;
     }
 
     //fill active element
@@ -45,17 +45,9 @@ void fillGridWithColor() {
       colorArray[n1] = activeCol;
     }
 
-    //draw dark elements
-    for (int n1: darkElements) {
-      colorArray[n1] = 0;
-    }
-
-    int nextElement = 10+int(50*fpsSpeed);
-    if (speedFrame%100==1) {
+    if ((speedFrame/4)%30==1) {
       selectedElement = int(random(elements.size())); 
-      //println("selectedElement: "+selectedElement);
     }
-
     break;
 
   case MODE_ALL_ELEMENTS:
