@@ -9,15 +9,15 @@ private static final int OSC_PORT = 10000;
 private static final int NR_OF_PIXELS_X = 20;
 private static final int NR_OF_PIXELS_Y = 9;
 
-private static final String VERSION = "ElementInvader v0.2";
+private static final String VERSION = "ElementInvader v0.3";
 
 //buffer
 private int[] colorArray;  
-private float fpsSpeed=1f;
+private float fpsSpeed=0.5f;
 
 //application logic
 private int frame;
-private int selectedMode=MODE_SINGLE_ELEMENT;
+private int selectedMode=MODE_ALL_ELEMENTS;
 
 //color stuff
 private int colSet=0;

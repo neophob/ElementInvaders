@@ -1,0 +1,34 @@
+#N canvas 6 60 668 541 10;
+#X obj 244 298 cnv 15 100 40 empty empty empty 20 12 0 14 -4034 -66577
+0;
+#X floatatom 311 344 5 0 0 0 - - -;
+#X obj 247 310 mrpeach/packOSC;
+#X msg 265 387 disconnect;
+#X obj 246 426 mrpeach/udpsend;
+#X msg 45 391 connect 127.0.0.1 10000;
+#X obj 443 18 vsl 15 128 0 1 0 0 empty empty change_speed 0 -9 0 10
+-228856 -1 -1 11400 1;
+#X obj 444 160 pack f;
+#X msg 444 183 sendtyped /speed f \$1;
+#X msg 16 175 sendtyped /mode i 2;
+#X msg 99 210 sendtyped /mode i 4;
+#X text 98 195 change to the fire fx;
+#X text 44 373 1st connect to OSC port;
+#X text 199 15 change color set;
+#X msg 253 73 sendtyped /colorset i 10;
+#X msg 227 52 sendtyped /colorset i 5;
+#X msg 204 31 sendtyped /colorset i 0;
+#X msg 281 93 sendtyped /colorset i 20;
+#X connect 2 0 4 0;
+#X connect 2 1 1 0;
+#X connect 3 0 4 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 2 0;
+#X connect 9 0 2 0;
+#X connect 10 0 2 0;
+#X connect 14 0 2 0;
+#X connect 15 0 2 0;
+#X connect 16 0 2 0;
+#X connect 17 0 2 0;

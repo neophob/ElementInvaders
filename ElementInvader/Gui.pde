@@ -69,18 +69,20 @@ void updateTextfield(String text) {
 }
 
 void controlEvent(ControlEvent theEvent) {
+  println("### Eventname: "+theEvent.getName()+", value: "+theEvent.getValue());
+  
   if (theEvent.isFrom(fpsSlider)) {
     fpsSpeed = theEvent.getValue();
     if (fpsSpeed==0.0f) {
       fpsSpeed = 0.001f;
     }
-    println("fpsSpeed: "+fpsSpeed);
+    println("Event for fpsSpeed: fpsSpeed="+fpsSpeed);
     return;
   }
 
   if (theEvent.isFrom(modeButton)) {
     selectedMode = int(theEvent.getValue());
-    println("selectedMode: "+selectedMode);
+    println("Event for modeButton: selectedMode="+selectedMode);
     return;
   }
 
