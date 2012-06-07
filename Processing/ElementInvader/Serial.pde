@@ -22,8 +22,12 @@ void sendSerial() {
   //send serial data if initialized and wait at least 45ms before sending again
   if (initialized && System.currentTimeMillis()-lastSendTime > 19) {    
     println(lastSendTime+" send: "+colorArray.length);
-    lpd6803.sendRgbFrame((byte)0, colorArray, ColorFormat.RGB);
-    lastSendTime = System.currentTimeMillis();
+    try {
+      lpd6803.sendRgbFrame(colorArray, ColorFormat.RGB);
+      lastSendTime = System.currentTimeMillis();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }  
 }
 

@@ -1,4 +1,4 @@
-import controlP5.*;
+import controlP5.*; 
 import oscP5.*;
 import com.neophob.lpd6803.*;
 import com.neophob.lpd6803.misc.*;
@@ -9,7 +9,7 @@ private static final int OSC_PORT = 10000;
 private static final int NR_OF_PIXELS_X = 20;
 private static final int NR_OF_PIXELS_Y = 9;
 
-private static final String VERSION = "ElementInvader v0.3";
+private static final String VERSION = "ElementInvader v0.31";
 
 //buffer
 private int[] colorArray;  
@@ -125,13 +125,13 @@ void setup() {
 
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
   initGui();
-  //  initSerial();
+  initSerial();
 
   initElements();  
   initContent();
 
   /* start oscP5, listening for incoming messages at port 12000 */
-  oscP5 = new OscP5(this, OSC_PORT);
+//  oscP5 = new OscP5(this, OSC_PORT);
   updateTextfield("OSC Server startet on port "+ OSC_PORT);
 }
 
