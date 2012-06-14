@@ -59,14 +59,15 @@
 #define SERIAL_DELAY_LOOP 3
 #define SERIAL_WAIT_DELAY 3
 
-#define PIXELS_PER_PANEL 180 //9x20 pixels
+//one transmission contains 32 pixels (64bytes)
+#define BYTES_PER_BULK_TRANSFER 64
 
 //this should match RX_BUFFER_SIZE from HardwareSerial.cpp
 //array that will hold the serial input string
 byte serInStr[COLOR_5BIT_FRAME_SIZE+SERIAL_HEADER_SIZE]; 	 				 
 
-//initialize pixels
-Neophob_LPD6803 strip = Neophob_LPD6803(PIXELS_PER_PANEL);
+//initialize pixels 9*20
+Neophob_LPD6803 strip = Neophob_LPD6803(180);
 
 #define SERIALBUFFERSIZE 4
 byte serialResonse[SERIALBUFFERSIZE];
@@ -88,7 +89,7 @@ static void sendAck() {
   Serial.write(serialResonse, SERIALBUFFERSIZE);
 
   //comment out next line on arduino!
-  //Serial.send_now();
+  Serial.send_now();
 }
 
 
@@ -237,9 +238,10 @@ void loop() {
 //    ofs: which panel, 0 (ofs=0), 1 (ofs=32), 2 (ofs=64)...
 // --------------------------------------------
 void updatePixels(byte ofs, byte* buffer) {
-  uint16_t currentLed = ofs*PIXELS_PER_PANEL;
+  //TODO unsure, maybe BYTES_PER_BULK_TRANSFER/2
+  uint16_t currentLed = ofs*BYTES_PER_BULK_TRANSFER;
   byte x=0;
-  for (byte i=0; i < PIXELS_PER_PANEL; i++) {
+  for (byte i=0; i < BYTES_PER_BULK_TRANSFER; i++) {
     strip.setPixelColor(currentLed, buffer[x]<<8 | buffer[x+1]);
     x+=2;
     currentLed++;

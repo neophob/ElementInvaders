@@ -34,7 +34,7 @@ private OscP5 oscP5;
 void setup() {
   size(800, 600);
   background(0);
-  frameRate(20);
+  frameRate(25);
   smooth();
 
   colorSet = new ArrayList<ColorSet>();
