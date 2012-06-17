@@ -4,17 +4,8 @@ static final int MODE_FIRE=2;
 static final int MODE_ALL_ELEMENTS=3;
 static final int MODE_PULSE_ELEMENTS=4;
 
-//elements which are not part of the periodic table (example: http://modelscience.com/PeriodicTable.html)
-static int[] darkElements = new int[] {
-  0, 20, 40, 60, 80, 100, 120, 140, 160, //left boarder
-  19, 39, 59, 79, 99, 119, 139, 159, 179, //right boarder
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, //top tow
-  161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 
-  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, //first row
-  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, //second row
-  43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 
-  63, 64, 65, 66, 67, 68, 69, 70, 71, 72
-};
+// periodic table example: http://modelscience.com/PeriodicTable.html
+
 
 private int[] fireBuffer;
 private Random r = new Random();
@@ -28,6 +19,9 @@ void fillGridWithColor() {
   int i=0;
   ColorSet cs = colorSet.get(colSet);
   int speedFrame = int(4*fpsSpeed*frame);
+  
+  Arrays.fill(colorArray,0);
+  
   switch(selectedMode) {
 
     //Elements
@@ -64,10 +58,6 @@ void fillGridWithColor() {
       }
     }
 
-    //draw dark elements
-    for (int n2: darkElements) {
-      colorArray[n2] = 0;
-    }    
     break;
 
   //pulse animation
@@ -86,10 +76,6 @@ void fillGridWithColor() {
       }
     }
 
-    //draw dark elements
-    for (int n2: darkElements) {
-      colorArray[n2] = 0;
-    }    
     break;
 
     //Rainbow animation
