@@ -40,7 +40,8 @@ void initGui() {
                     .addItem("Pulse Elements", MODE_PULSE_ELEMENTS)                    
                       .addItem("Rainbow", MODE_RAINBOW)
                         .addItem("Fire", MODE_FIRE)                        
-                          .activate(1);
+                          .addItem("Solid", MODE_SOLID)                        
+                            .activate(1);
 
   //radiobuttons with color
   colorButton = cp5.addRadioButton("colorButton")

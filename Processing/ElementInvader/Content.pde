@@ -3,6 +3,7 @@ static final int MODE_RAINBOW=1;
 static final int MODE_FIRE=2;
 static final int MODE_ALL_ELEMENTS=3;
 static final int MODE_PULSE_ELEMENTS=4;
+static final int MODE_SOLID=5;
 
 // periodic table example: http://modelscience.com/PeriodicTable.html
 
@@ -97,6 +98,15 @@ void fillGridWithColor() {
       }
     }
     break;
+    
+  case MODE_SOLID:
+    int col = cs.getSmoothColor( frame );
+    for (n=0; n<NR_OF_PIXELS_X*NR_OF_PIXELS_Y; n++) {
+      colorArray[n] = col;
+    }
+  
+  break;
+    
   }
 }
 

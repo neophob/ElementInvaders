@@ -56,11 +56,8 @@
 //--- protocol data end
 
 //8ms is the minimum! else we dont get any data!
-#define SERIAL_DELAY_LOOP 3
-#define SERIAL_WAIT_DELAY 3
-
-//one transmission contains 32 pixels (64bytes)
-#define BYTES_PER_BULK_TRANSFER 64
+#define SERIAL_DELAY_LOOP 4
+#define SERIAL_WAIT_DELAY 2
 
 //this should match RX_BUFFER_SIZE from HardwareSerial.cpp
 //array that will hold the serial input string
@@ -238,10 +235,9 @@ void loop() {
 //    ofs: which panel, 0 (ofs=0), 1 (ofs=32), 2 (ofs=64)...
 // --------------------------------------------
 void updatePixels(byte ofs, byte* buffer) {
-  //TODO unsure, maybe BYTES_PER_BULK_TRANSFER/2
-  uint16_t currentLed = ofs*BYTES_PER_BULK_TRANSFER;
+  uint16_t currentLed = ofs*COLOR_5BIT_FRAME_SIZE;
   byte x=0;
-  for (byte i=0; i < BYTES_PER_BULK_TRANSFER; i++) {
+  for (byte i=0; i < COLOR_5BIT_FRAME_SIZE; i++) {
     strip.setPixelColor(currentLed, buffer[x]<<8 | buffer[x+1]);
     x+=2;
     currentLed++;
