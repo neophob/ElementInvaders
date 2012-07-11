@@ -3,6 +3,22 @@ private Lpd6803 lpd6803;
 private boolean initialized;
 private long lastSendTime;
 
+//flip seconds scanline 
+static int[] flipSecondScanline(int[] data) {
+  int[] ret = data.clone();
+  int ofs;
+  int tmp;
+  for (int y=1; y<NR_OF_PIXELS_Y; y+=2) {
+    ofs = y*NR_OF_PIXELS_X;
+    for (int x=0; x<NR_OF_PIXELS_X/2-1; x++) {
+      tmp=ret[ofs+x];
+      ret[ofs+x] = ret[ofs+NR_OF_PIXELS_X-1-x];
+      ret[ofs+NR_OF_PIXELS_X-1-x] = tmp;
+    }
+  }
+
+  return ret;
+}
 
 void initSerial() {
   updateTextfield("Init serial port");
@@ -23,11 +39,12 @@ void sendSerial() {
   if (initialized && System.currentTimeMillis()-lastSendTime > 19) {    
     println(lastSendTime+" send: "+colorArray.length);
     try {
-      lpd6803.sendRgbFrame(colorArray, ColorFormat.RGB);
+      lpd6803.sendRgbFrame(flipSecondScanline(colorArray), ColorFormat.RGB);
       lastSendTime = System.currentTimeMillis();
-    } catch (Exception e) {
+    } 
+    catch (Exception e) {
       e.printStackTrace();
     }
-  }  
+  }
 }
 
