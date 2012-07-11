@@ -52,6 +52,8 @@
 //frame size for specific color resolution
 //32pixels * 2 byte per color (15bit - one bit wasted)
 #define COLOR_5BIT_FRAME_SIZE 64
+#define PIXEL_PER_FRAME 32
+
 #define SERIAL_HEADER_SIZE 5
 //--- protocol data end
 
@@ -236,12 +238,11 @@ void loop() {
 // --------------------------------------------
 void updatePixels(byte ofs, byte* buffer) {
   //one frame is 64 bytes and update 32 pixels
-  uint16_t currentLed = ofs*COLOR_5BIT_FRAME_SIZE/2;
+  uint16_t currentLed = ofs*PIXEL_PER_FRAME;
   byte x=0;
-  for (byte i=0; i < COLOR_5BIT_FRAME_SIZE; i++) {
-    strip.setPixelColor(currentLed, buffer[x]<<8 | buffer[x+1]);
+  for (byte i=0; i < PIXEL_PER_FRAME; i++) {
+    strip.setPixelColor(currentLed++, buffer[x]<<8 | buffer[x+1]);
     x+=2;
-    currentLed++;
   }  
   strip.show();   // write all the pixels out
 }
