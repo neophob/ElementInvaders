@@ -235,7 +235,8 @@ void loop() {
 //    ofs: which panel, 0 (ofs=0), 1 (ofs=32), 2 (ofs=64)...
 // --------------------------------------------
 void updatePixels(byte ofs, byte* buffer) {
-  uint16_t currentLed = ofs*COLOR_5BIT_FRAME_SIZE;
+  //one frame is 64 bytes and update 32 pixels
+  uint16_t currentLed = ofs*COLOR_5BIT_FRAME_SIZE/2;
   byte x=0;
   for (byte i=0; i < COLOR_5BIT_FRAME_SIZE; i++) {
     strip.setPixelColor(currentLed, buffer[x]<<8 | buffer[x+1]);
