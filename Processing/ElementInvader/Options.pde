@@ -1,4 +1,5 @@
 private static final String COLOR_SET_NAME = "palette.properties";
+private static final String OPTION_FILENAME = "options.properties";
 
 String colorLoadMsg = "";
 
@@ -10,7 +11,7 @@ public List<ColorSet> loadColorsets() {
   try {
     palette.load(createInput(COLOR_SET_NAME));
 
-    for(String key : palette.stringPropertyNames()) {
+    for (String key : palette.stringPropertyNames()) {
       try {
         String setColors = palette.getProperty(key);
         String[] colorsAsString = setColors.split(",");
@@ -35,7 +36,21 @@ public List<ColorSet> loadColorsets() {
     colorLoadMsg = "Failed to load Config, "+e;
     throw new IllegalArgumentException("Configuration error!", e);
   }
-  
+
   return colorSet;
+}
+
+
+public String getDefaultColorSetName() {
+  Properties options = new Properties();
+  try {
+    options.load(createInput(OPTION_FILENAME));
+    return options.getProperty("default.colorset");
+  } 
+  catch (Exception e) {
+    colorLoadMsg = "Failed to load Palette entry!"+e;
+  }
+
+  return "";
 }
 

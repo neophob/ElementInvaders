@@ -39,8 +39,8 @@ void setup() {
   
   colorSet = loadColorsets();
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
-  initGui();
-//  initSerial();
+  initGui(getDefaultColorSetName());
+  initSerial();
 
   initElements();  
   initContent();

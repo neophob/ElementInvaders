@@ -7,7 +7,7 @@ private RadioButton colorButton;
 
 int slideBackground = color(48, 48, 48);
 
-void initGui() {
+void initGui(String defaultColorSetName) {
   cp5 = new ControlP5(this);
 
   // add a vertical slider
@@ -56,9 +56,13 @@ void initGui() {
 
   int i=0;
   for (ColorSet cs: colorSet) {
-    colorButton.addItem(cs.getName(), i++);
+    colorButton.addItem(cs.getName(), i);
+    if (cs.getName().equalsIgnoreCase(defaultColorSetName)) {
+      colorButton.activate(i);
+    }
+    i++;
   }
-  colorButton.activate(5);
+//  colorButton.activate(5);
 
   updateTextfield(VERSION);
 }
