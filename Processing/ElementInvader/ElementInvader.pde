@@ -46,7 +46,7 @@ void setup() {
   initContent();
 
   updateTextfield(colorLoadMsg);
-  /* start oscP5, listening for incoming messages at port 12000 */
+  /* start oscP5, listening for incoming messages at port 10000 */
   oscP5 = new OscP5(this, OSC_PORT);
   updateTextfield("OSC Server startet on port "+ OSC_PORT);
 }
