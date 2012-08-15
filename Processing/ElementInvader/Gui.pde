@@ -12,13 +12,13 @@ void initGui() {
 
   // add a vertical slider
   fpsSlider = cp5.addSlider("Speed")
-    .setPosition(300, 420)
+    .setPosition(300, 420+25)
       .setSize(200, 20)
         .setRange(0, 1)
           .setValue(.6);
 
   myTextarea = cp5.addTextarea("txt")
-    .setPosition(580, 480)
+    .setPosition(580, 480+25)
       .setSize(210, 80)
         .setFont(createFont("arial", 12))
           .setLineHeight(14)
@@ -27,19 +27,19 @@ void initGui() {
                 .setColorForeground(color(255, 100));
 
   modeButton = cp5.addRadioButton("colorModeButton")
-    .setPosition(20, 380)
+    .setPosition(20, 380+25)
       .setSize(20, 20)
         .setColorForeground(color(120))
           .setColorActive(color(255))
             .setColorLabel(color(255))
-              .setItemsPerRow(6)
+              .setItemsPerRow(7)
                 .setSpacingColumn(80)
                   .setNoneSelectedAllowed(false)
                     .addItem("Single Elements", MODE_SINGLE_ELEMENT)
                     .addItem("All Elements", MODE_ALL_ELEMENTS)
                     .addItem("Pulse Elements", MODE_PULSE_ELEMENTS)                    
-                      .addItem("Rainbow", MODE_RAINBOW)
-                        .addItem("Fire", MODE_FIRE)                        
+                      .addItem("Rainbow ", MODE_RAINBOW)
+                        .addItem("Fire ", MODE_FIRE)                        
                           .addItem("Solid", MODE_SOLID)                        
                             .activate(1);
 

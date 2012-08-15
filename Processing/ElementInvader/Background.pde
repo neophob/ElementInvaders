@@ -37,8 +37,8 @@ void drawGradientBackground() {
     ofs += this.width;
   }
   
-  drawBackgroundSlide(300, 51, "Color");
-  drawBackgroundSlide(360, 51, "Generator");
+  drawBackgroundSlide(300, 51+25, "Color");
+  drawBackgroundSlide(360+25, 51, "Generator");
   registerTextLabel=false;
 
   this.updatePixels();
