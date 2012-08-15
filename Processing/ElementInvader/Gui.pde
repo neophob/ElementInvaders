@@ -7,7 +7,7 @@ private RadioButton colorButton;
 
 int slideBackground = color(48, 48, 48);
 
-void initGui(String defaultColorSetName) {
+void initGui(String defaultColorSetName, int defaultGeneratorNr, float defaultSpeed) {
   cp5 = new ControlP5(this);
 
   // add a vertical slider
@@ -15,7 +15,7 @@ void initGui(String defaultColorSetName) {
     .setPosition(300, 420+25)
       .setSize(200, 20)
         .setRange(0, 1)
-          .setValue(.6);
+          .setValue(defaultSpeed);
 
   myTextarea = cp5.addTextarea("txt")
     .setPosition(580, 480+25)
@@ -36,12 +36,12 @@ void initGui(String defaultColorSetName) {
                 .setSpacingColumn(80)
                   .setNoneSelectedAllowed(false)
                     .addItem("Single Elements", MODE_SINGLE_ELEMENT)
-                    .addItem("All Elements", MODE_ALL_ELEMENTS)
-                    .addItem("Pulse Elements", MODE_PULSE_ELEMENTS)                    
-                      .addItem("Rainbow ", MODE_RAINBOW)
-                        .addItem("Fire ", MODE_FIRE)                        
-                          .addItem("Solid", MODE_SOLID)                        
-                            .activate(1);
+                      .addItem("All Elements", MODE_ALL_ELEMENTS)
+                        .addItem("Pulse Elements", MODE_PULSE_ELEMENTS)                    
+                          .addItem("Rainbow ", MODE_RAINBOW)
+                            .addItem("Fire ", MODE_FIRE)                        
+                              .addItem("Solid", MODE_SOLID)                        
+                                .activate(defaultGeneratorNr);
 
   //radiobuttons with color
   colorButton = cp5.addRadioButton("colorButton")
@@ -62,7 +62,7 @@ void initGui(String defaultColorSetName) {
     }
     i++;
   }
-//  colorButton.activate(5);
+  //  colorButton.activate(5);
 
   updateTextfield(VERSION);
 }
@@ -75,7 +75,7 @@ void updateTextfield(String text) {
 
 void controlEvent(ControlEvent theEvent) {
   println("### Eventname: "+theEvent.getName()+", value: "+theEvent.getValue());
-  
+
   if (theEvent.isFrom(fpsSlider)) {
     fpsSpeed = theEvent.getValue();
     if (fpsSpeed==0.0f) {

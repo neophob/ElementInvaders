@@ -48,9 +48,35 @@ public String getDefaultColorSetName() {
     return options.getProperty("default.colorset");
   } 
   catch (Exception e) {
-    colorLoadMsg = "Failed to load Palette entry!"+e;
+    e.printStackTrace();
   }
-
   return "";
 }
 
+
+public int getDefaultGeneratorNr() {
+  Properties options = new Properties();
+  try {
+    options.load(createInput(OPTION_FILENAME));
+    String s = options.getProperty("default.mode.nr");
+    return Integer.parseInt(s);
+  } 
+  catch (Exception e) {
+    e.printStackTrace();
+  }
+  return 1;
+}
+
+
+public float getDefaultSpeed() {
+  Properties options = new Properties();
+  try {
+    options.load(createInput(OPTION_FILENAME));
+    String s = options.getProperty("default.speed");
+    return Float.parseFloat(s);
+  } 
+  catch (Exception e) {
+    e.printStackTrace();
+  }
+  return 0.5f;
+}

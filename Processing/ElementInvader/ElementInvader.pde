@@ -9,7 +9,7 @@ private static final int OSC_PORT = 10000;
 private static final int NR_OF_PIXELS_X = 20;
 private static final int NR_OF_PIXELS_Y = 9;
 
-private static final String VERSION = "ElementInvader v0.4";
+private static final String VERSION = "ElementInvader v0.5";
 
 //buffer
 private int[] colorArray;  
@@ -39,7 +39,7 @@ void setup() {
   
   colorSet = loadColorsets();
   colorArray = new color[NR_OF_PIXELS_X*NR_OF_PIXELS_Y];
-  initGui(getDefaultColorSetName());
+  initGui(getDefaultColorSetName(), getDefaultGeneratorNr(), getDefaultSpeed());
   initSerial();
 
   initElements();  
