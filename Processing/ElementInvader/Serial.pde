@@ -25,6 +25,10 @@ void initSerial() {
   try {
     lpd6803 = new Lpd6803(this, NR_OF_PIXELS_X*NR_OF_PIXELS_Y);          
     this.initialized = lpd6803.ping();
+    if (this.initialized) {
+      //clear
+      lpd6803.sendRgbFrame(colorArray, ColorFormat.RGB);
+    }
     println("Ping result: "+ this.initialized);
     updateTextfield(" -> Ping result: "+ this.initialized);
   } 
